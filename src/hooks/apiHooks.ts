@@ -38,6 +38,7 @@ const useMedia = () => {
           return itemWithOwner;
         }),
       );
+      itemsWithOwner.reverse();
       setMediaArray(itemsWithOwner);
     } catch (error) {
       console.error('getMedia failed', error);

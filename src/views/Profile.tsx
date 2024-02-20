@@ -1,11 +1,13 @@
-import {View, Text} from 'react-native';
-import React from 'react';
+import {Button, Card} from '@rneui/themed';
+
+import {useUserContext} from '../hooks/ContextHooks';
 
 const Profile = () => {
+  const {handleLogout} = useUserContext();
   return (
-    <View>
-      <Text>Profile</Text>
-    </View>
+    <Card>
+      <Button onPress={handleLogout}>Logout</Button>
+    </Card>
   );
 };
 

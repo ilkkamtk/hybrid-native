@@ -2,7 +2,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+import {useUserContext} from '../hooks/ContextHooks';
 import Home from '../views/Home';
+import Login from '../views/Login';
 import Profile from '../views/Profile';
 import Single from '../views/Single';
 
@@ -19,14 +21,21 @@ const Tabscreen = () => {
 };
 
 const Stackscreen = () => {
+  const {user} = useUserContext();
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="Tabs"
-        component={Tabscreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen name="Single" component={Single} />
+      {user ? (
+        <>
+          <Stack.Screen
+            name="Tabs"
+            component={Tabscreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen name="Single" component={Single} />
+        </>
+      ) : (
+        <Stack.Screen name="Login" component={Login} />
+      )}
     </Stack.Navigator>
   );
 };

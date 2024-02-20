@@ -1,5 +1,7 @@
 import {Card, Icon, ListItem} from '@rneui/base';
 import {MediaItemWithOwner} from '@sharedTypes/DBTypes';
+import {format} from 'date-fns';
+import {fi} from 'date-fns/locale';
 import {ResizeMode, Video} from 'expo-av';
 import {ActivityIndicator, StyleSheet, Text} from 'react-native';
 
@@ -34,7 +36,9 @@ const Single = ({route}: any) => {
       </ListItem>
       <ListItem>
         <Icon name="today" />
-        <Text>{new Date(item.created_at).toLocaleString('fi-FI')}</Text>
+        <Text>
+          {format(new Date(item.created_at), 'dd.MM.yyyy, HH:mm', {locale: fi})}
+        </Text>
       </ListItem>
       <ListItem>
         <Icon name="person" />
