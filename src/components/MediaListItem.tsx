@@ -1,3 +1,8 @@
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from '@react-navigation/native';
 import {MediaItemWithOwner} from '@sharedTypes/DBTypes';
 import {Image, Text, TouchableOpacity} from 'react-native';
 
@@ -12,6 +17,7 @@ const MediaListItem = ({
   >;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const navigation: NavigationProp<ParamListBase> = useNavigation();
   // replace https with http to avoid network errors in item.thumbnail and item.filename
   item.thumbnail = item.thumbnail.replace('https', 'http');
   item.filename = item.filename.replace('https', 'http');
@@ -19,8 +25,7 @@ const MediaListItem = ({
   return (
     <TouchableOpacity
       onPress={() => {
-        setSelectedItem(item);
-        setModalVisible(true);
+        navigation.navigate('Single', {item});
       }}
     >
       <Image style={{width: 200, height: 200}} source={{uri: item.thumbnail}} />

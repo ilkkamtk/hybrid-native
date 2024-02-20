@@ -17,3 +17,7 @@
 - Ei liity tähän: Comment tyyppi on Javascriptissa, joten tulevaisuudessa sen nimeä vois ehkä vaihtaa. Kenties.
 - .env virtuaalikoneen osoitteista https->http
 - Kuville sama: `item.thumbnail = item.thumbnail.replace('https', 'http');` ja `item.filename = item.filename.replace('https', 'http');`
+
+## Routing
+
+- kokeilin useNavigationia MediaListItemissä. Ei tartte lähettää navigation objektia propsina. Tyyppien löytämisessä haasteita, mutta löytyi: `const navigation: NavigationProp<ParamListBase> = useNavigation();`

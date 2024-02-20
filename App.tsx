@@ -3,29 +3,17 @@ import {Platform, SafeAreaView, StyleSheet} from 'react-native';
 
 import {UpdateProvider} from './src/contexts/UpdateContext';
 import {UserProvider} from './src/contexts/UserContext';
-import Home from './src/views/Home';
+import Navigator from './src/navigators/Navigator';
 
 const App = () => {
   return (
     <UserProvider>
       <UpdateProvider>
-        <SafeAreaView style={styles.container}>
-          <Home />
-          <StatusBar style="auto" />
-        </SafeAreaView>
+        <Navigator></Navigator>
+        <StatusBar style="auto" />
       </UpdateProvider>
     </UserProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: Platform.OS === 'android' ? 30 : 0,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default App;
