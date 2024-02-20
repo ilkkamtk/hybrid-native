@@ -2,7 +2,7 @@
 
 - Ohjeista home pois
 - Expo ei tee src kansioita??
-- Safe area: <https://docs.expo.dev/develop/user-interface/safe-areas/>
+- Safe area: <https://docs.expo.dev/develop/user-interface/safe-areas/>. Tulee React Navigationin mukana, joten siihen ei tartte tässä vaiheessa mennä.
 - Muista kommentoida DBTypes: graphql vs rest api
 - Tyyppi korjattu:
 
