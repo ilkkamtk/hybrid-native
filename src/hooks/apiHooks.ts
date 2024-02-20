@@ -4,6 +4,7 @@ import {
   MediaItem,
   MediaItemWithOwner,
   User,
+  UserWithNoPassword,
 } from '@sharedTypes/DBTypes';
 import {
   LoginResponse,
@@ -17,14 +18,19 @@ import {useEffect, useState} from 'react';
 import {fetchData} from '../lib/functions';
 import {Credentials} from '../types/LocalTypes';
 
-const useMedia = () => {
+const useMedia = (user: UserWithNoPassword | null = null) => {
   const [mediaArray, setMediaArray] = useState<MediaItemWithOwner[]>([]);
 
   const getMedia = async () => {
     try {
-      const mediaItems = await fetchData<MediaItem[]>(
+      let mediaItems = await fetchData<MediaItem[]>(
         process.env.EXPO_PUBLIC_MEDIA_API + '/media',
       );
+      // filter out only the user's own media
+      if (user) {
+        mediaItems = mediaItems.filter((item) => item.user_id === user.user_id);
+      }
+
       // Get usernames (file owners) for all media files from auth api
       const itemsWithOwner: MediaItemWithOwner[] = await Promise.all(
         mediaItems.map(async (item) => {
