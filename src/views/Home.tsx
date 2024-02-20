@@ -1,9 +1,9 @@
 import {MediaItemWithOwner} from '@sharedTypes/DBTypes';
-import React, {useState} from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {useState} from 'react';
+import {Text, View, FlatList} from 'react-native';
 
+import MediaListItem from '../components/MediaListItem';
 import MediaModal from '../components/MediaModal';
-import MediaRow from '../components/MediaRow';
 import {useMedia} from '../hooks/apiHooks';
 
 const Home = () => {
@@ -19,9 +19,8 @@ const Home = () => {
       <FlatList
         data={mediaArray}
         renderItem={({item}) => (
-          <MediaRow
+          <MediaListItem
             item={item}
-            selectedItem={selectedItem}
             setSelectedItem={setSelectedItem}
             setModalVisible={setModalVisible}
           />

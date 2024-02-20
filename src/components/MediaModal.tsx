@@ -8,6 +8,7 @@ import {
   View,
   Image,
 } from 'react-native';
+import {Video, ResizeMode} from 'expo-av';
 
 const MediaModal = ({
   item,
@@ -33,10 +34,21 @@ const MediaModal = ({
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>{item.title}</Text>
-              <Image
-                source={{uri: item.filename}}
-                style={{width: 300, height: 300}}
-              />
+              <>
+                {item.media_type.includes('image') ? (
+                  <Image
+                    source={{uri: item.filename}}
+                    style={{width: 300, height: 300}}
+                  />
+                ) : (
+                  <Video
+                    style={{width: 300, height: 300}}
+                    source={{uri: item.filename}}
+                    resizeMode={ResizeMode.CONTAIN}
+                    useNativeControls
+                  />
+                )}
+              </>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setModalVisible(!modalVisible)}

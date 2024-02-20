@@ -1,9 +1,9 @@
 import {StatusBar} from 'expo-status-bar';
 import {Platform, SafeAreaView, StyleSheet} from 'react-native';
 
-import {UpdateProvider} from './contexts/UpdateContext';
-import {UserProvider} from './contexts/UserContext';
-import Home from './views/Home';
+import {UpdateProvider} from './src/contexts/UpdateContext';
+import {UserProvider} from './src/contexts/UserContext';
+import Home from './src/views/Home';
 
 const App = () => {
   return (
