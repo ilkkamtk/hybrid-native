@@ -1,6 +1,7 @@
 import {MediaItemWithOwner} from '@sharedTypes/DBTypes';
 import {ResizeMode, Video} from 'expo-av';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
+import AsyncImage from '../components/AsyncImage';
 
 const Single = ({route}: any) => {
   console.log('route', route.params);
@@ -11,7 +12,7 @@ const Single = ({route}: any) => {
     <View style={styles.container}>
       <Text style={styles.title}>{item.title}</Text>
       {fileType === 'image' ? (
-        <Image style={styles.image} source={{uri: item.filename}} />
+        <AsyncImage style={styles.image} source={{uri: item.filename}} />
       ) : (
         <Video
           style={styles.image}
