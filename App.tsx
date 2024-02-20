@@ -1,12 +1,20 @@
 import {StatusBar} from 'expo-status-bar';
-import {Platform, SafeAreaView, StyleSheet, Text} from 'react-native';
+import {Platform, SafeAreaView, StyleSheet} from 'react-native';
+
+import {UpdateProvider} from './contexts/UpdateContext';
+import {UserProvider} from './contexts/UserContext';
+import Home from './views/Home';
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </SafeAreaView>
+    <UserProvider>
+      <UpdateProvider>
+        <SafeAreaView style={styles.container}>
+          <Home />
+          <StatusBar style="auto" />
+        </SafeAreaView>
+      </UpdateProvider>
+    </UserProvider>
   );
 };
 
