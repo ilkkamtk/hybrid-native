@@ -5,8 +5,9 @@ import {fi} from 'date-fns/locale';
 import {ResizeMode, Video} from 'expo-av';
 import {ActivityIndicator, StyleSheet, Text} from 'react-native';
 
+import Ratings from '../components/Ratings';
+
 const Single = ({route}: any) => {
-  console.log('route', route.params);
   const item: MediaItemWithOwner = route.params;
   const [fileType, fileFormat] = item.media_type.split('&#x2F;');
 
@@ -49,6 +50,9 @@ const Single = ({route}: any) => {
         <Text>
           {Math.round(item.filesize / 1024)} kB, {fileFormat}
         </Text>
+      </ListItem>
+      <ListItem topDivider>
+        <Ratings item={item} />
       </ListItem>
     </Card>
   );

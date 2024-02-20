@@ -21,3 +21,7 @@
 ## Routing
 
 - kokeilin useNavigationia MediaListItemissä. Ei tartte lähettää navigation objektia propsina. Tyyppien löytämisessä haasteita, mutta löytyi: `const navigation: NavigationProp<ParamListBase> = useNavigation();`
+
+## Profile
+
+- rneui Rating ei toimi. npm install react-native-star-rating-widget sen sijasta.
