@@ -4,39 +4,34 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 import {MediaItemWithOwner} from '@sharedTypes/DBTypes';
-import {Image, Text, TouchableOpacity} from 'react-native';
+import {Text} from 'react-native';
+import {ListItem, Avatar} from '@rneui/base';
 
-const MediaListItem = ({
-  item,
-  setSelectedItem,
-  setModalVisible,
-}: {
-  item: MediaItemWithOwner;
-  setSelectedItem: React.Dispatch<
-    React.SetStateAction<MediaItemWithOwner | null>
-  >;
-  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const MediaListItem = ({item}: {item: MediaItemWithOwner}) => {
   const navigation: NavigationProp<ParamListBase> = useNavigation();
   // replace https with http to avoid network errors in item.thumbnail and item.filename
   item.thumbnail = item.thumbnail.replace('https', 'http');
   item.filename = item.filename.replace('https', 'http');
 
   return (
-    <TouchableOpacity
+    <ListItem
       onPress={() => {
-        navigation.navigate('Single', {item});
+        navigation.navigate('Single', item);
       }}
     >
-      <Image style={{width: 200, height: 200}} source={{uri: item.thumbnail}} />
-      <Text>{item.title}</Text>
-      <Text>{item.description}</Text>
-      <Text>{new Date(item.created_at).toLocaleString('fi-FI')}</Text>
-      <Text>
-        {item.filesize} {item.media_type.replace('&#x2F;', '/')}
-      </Text>
-      <Text>Uploaded by: {item.username}</Text>
-    </TouchableOpacity>
+      <Avatar size={'large'} source={{uri: item.thumbnail}} />
+      <ListItem.Content>
+        <ListItem.Title>{item.title}</ListItem.Title>
+        <ListItem.Subtitle ellipsizeMode="tail" numberOfLines={1}>
+          {item.description}
+        </ListItem.Subtitle>
+        <ListItem.Subtitle>
+          Posted by: {item.username} on{' '}
+          {new Date(item.created_at).toLocaleDateString('fi-FI')}
+        </ListItem.Subtitle>
+      </ListItem.Content>
+      <ListItem.Chevron color={'black'} />
+    </ListItem>
   );
 };
 

@@ -18,13 +18,7 @@ const Home = () => {
       <Text>My Media</Text>
       <FlatList
         data={mediaArray}
-        renderItem={({item}) => (
-          <MediaListItem
-            item={item}
-            setSelectedItem={setSelectedItem}
-            setModalVisible={setModalVisible}
-          />
-        )}
+        renderItem={({item}) => <MediaListItem item={item} />}
       />
       <MediaModal
         item={selectedItem}
