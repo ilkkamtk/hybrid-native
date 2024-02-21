@@ -29,3 +29,5 @@
 ## Upload
 
 - Uploudia varten apiHooksiin tartti tehdä uusi funktio `postExpoFile`, joka käyttää `expo-file-system` kirjastoa. FormData täytyy unohtaa TypeScriptin kanssa react nativella. Oikeastaan tää on helmpompikin.
+
+- Tehtiin muuten vikalla React tunnilla update context jo etukenossa, joten setTimeout hässäkän voi jättää pois. Lisäksi backend palauttaa sit vasta kun thumbnail on luotu, joten sitä ei tartte odottaa.
