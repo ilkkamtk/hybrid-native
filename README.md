@@ -25,3 +25,7 @@
 ## Profile
 
 - rneui Rating ei toimi. npm install react-native-star-rating-widget sen sijasta.
+
+## Upload
+
+- Uploudia varten apiHooksiin tartti tehdä uusi funktio `postExpoFile`, joka käyttää `expo-file-system` kirjastoa. FormData täytyy unohtaa TypeScriptin kanssa react nativella. Oikeastaan tää on helmpompikin.

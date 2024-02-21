@@ -14,13 +14,16 @@ import {
   UploadResponse,
   UserResponse,
 } from '@sharedTypes/MessageTypes';
+import * as FileSystem from 'expo-file-system';
 import {useEffect, useState} from 'react';
 
+import {useUpdateContext} from './ContextHooks';
 import {fetchData} from '../lib/functions';
 import {Credentials} from '../types/LocalTypes';
 
 const useMedia = (user: UserWithNoPassword | null = null) => {
   const [mediaArray, setMediaArray] = useState<MediaItemWithOwner[]>([]);
+  const {update} = useUpdateContext();
 
   const getMedia = async () => {
     try {
@@ -54,7 +57,7 @@ const useMedia = (user: UserWithNoPassword | null = null) => {
 
   useEffect(() => {
     getMedia();
-  }, []);
+  }, [update]);
 
   const postMedia = (
     file: UploadResponse,
@@ -197,7 +200,26 @@ const useFile = () => {
     );
   };
 
-  return {postFile};
+  const postExpoFile = async (
+    imageUri: string,
+    token: string,
+  ): Promise<UploadResponse> => {
+    const fileResult = await FileSystem.uploadAsync(
+      process.env.EXPO_PUBLIC_UPLOAD_SERVER + '/upload',
+      imageUri, // uri of the image
+      {
+        httpMethod: 'POST',
+        uploadType: FileSystem.FileSystemUploadType.MULTIPART,
+        fieldName: 'file',
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      },
+    );
+    return fileResult.body ? JSON.parse(fileResult.body) : null;
+  };
+
+  return {postFile, postExpoFile};
 };
 
 const useLike = () => {

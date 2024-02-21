@@ -1,4 +1,5 @@
 import {MediaItemWithOwner} from '@sharedTypes/DBTypes';
+import {Video, ResizeMode} from 'expo-av';
 import {
   Alert,
   Modal,
@@ -8,7 +9,6 @@ import {
   View,
   Image,
 } from 'react-native';
-import {Video, ResizeMode} from 'expo-av';
 
 const MediaModal = ({
   item,

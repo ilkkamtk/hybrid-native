@@ -9,6 +9,7 @@ import Login from '../views/Login';
 import MyFiles from '../views/MyFiles';
 import Profile from '../views/Profile';
 import Single from '../views/Single';
+import Upload from '../views/Upload';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -31,6 +32,15 @@ const Tabscreen = () => {
         options={{
           tabBarIcon: ({color, size}) => (
             <Icon name="person" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Upload"
+        component={Upload}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon name="upload" color={color} size={size} />
           ),
         }}
       />
