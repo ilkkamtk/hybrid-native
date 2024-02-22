@@ -55,3 +55,7 @@ useEffect(() => {
   return unsubscribe;
 }, [navigation, resetForm]);
 ```
+
+## Player
+
+- Muokkaus ja delete lisätty. Deleteen tein asynkronisen confirm dialogin, koska perus confirm ei tieteskään toimi.
