@@ -7,7 +7,7 @@ import {
 import {Button, Card, Input} from '@rneui/base';
 import {Video} from 'expo-av';
 import * as ImagePicker from 'expo-image-picker';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {Alert} from 'react-native';
 
@@ -18,8 +18,8 @@ const Upload = () => {
   const [image, setImage] = useState<ImagePicker.ImagePickerResult | null>(
     null,
   );
-  const {postExpoFile} = useFile();
-  const {postMedia} = useMedia();
+  const {postExpoFile, loading} = useFile();
+  const {postMedia, loading: loadingMedia} = useMedia();
   const {update, setUpdate} = useUpdateContext();
   const navigation: NavigationProp<ParamListBase> = useNavigation();
 
@@ -74,6 +74,16 @@ const Upload = () => {
     reset(initValues);
   };
 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+      resetForm();
+    });
+
+    return unsubscribe;
+  }, []);
+
+  console.log('rendering Upload');
+
   return (
     <Card>
       <Controller
@@ -114,7 +124,7 @@ const Upload = () => {
       />
       {image && image.assets![0].mimeType?.includes('video') ? (
         <Video
-          source={{uri: 'http:' + image.assets![0].uri}}
+          source={{uri: image.assets![0].uri}}
           style={{height: 300}}
           useNativeControls
           isLooping
@@ -130,7 +140,11 @@ const Upload = () => {
         />
       )}
       <Card.Divider />
-      <Button title="Upload" onPress={handleSubmit(onSubmit)} />
+      <Button
+        title="Upload"
+        onPress={handleSubmit(onSubmit)}
+        loading={loading || loadingMedia}
+      />
       <Card.Divider />
       <Button color="secondary" title="Reset" onPress={resetForm} />
     </Card>
