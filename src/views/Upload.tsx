@@ -11,7 +11,7 @@ import {useState} from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {Alert} from 'react-native';
 
-import {useUpdateContext} from '../hooks/ContextHooks';
+import useUpdateContext from '../hooks/UpdateHook';
 import {useFile, useMedia} from '../hooks/apiHooks';
 
 const Upload = () => {

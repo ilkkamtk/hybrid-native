@@ -1,5 +1,4 @@
 import {StatusBar} from 'expo-status-bar';
-import {Platform, SafeAreaView, StyleSheet} from 'react-native';
 
 import {UpdateProvider} from './src/contexts/UpdateContext';
 import {UserProvider} from './src/contexts/UserContext';

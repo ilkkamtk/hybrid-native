@@ -31,3 +31,13 @@
 - Uploudia varten apiHooksiin tartti tehdä uusi funktio `postExpoFile`, joka käyttää `expo-file-system` kirjastoa. FormData täytyy unohtaa TypeScriptin kanssa react nativella. Oikeastaan tää on helmpompikin.
 
 - Tehtiin muuten vikalla React tunnilla update context jo etukenossa grpahQLHooksiin, joten setTimeout hässäkän voi jättää pois. Lisäksi backend palauttaa sit vasta kun thumbnail on luotu, joten sitä ei tartte odottaa.
+
+- Korjattu varoitus:
+
+  ```text
+  Require cycle: src/contexts/UserContext.tsx -> src/hooks/apiHooks.ts -> src/hooks/ContextHooks.ts -> src/contexts/UserContext.tsx
+
+  Require cycles are allowed, but can result in uninitialized values. Consider refactoring to remove the need for a cycle.
+  ```
+
+  `useUserContext`ja `useUpdateContext` hookit siirretty omiin tiedostoihin ja laitettu export default.

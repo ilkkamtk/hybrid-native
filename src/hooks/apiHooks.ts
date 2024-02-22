@@ -17,7 +17,7 @@ import {
 import * as FileSystem from 'expo-file-system';
 import {useEffect, useState} from 'react';
 
-import {useUpdateContext} from './ContextHooks';
+import useUpdateContext from './UpdateHook';
 import {fetchData} from '../lib/functions';
 import {Credentials} from '../types/LocalTypes';
 

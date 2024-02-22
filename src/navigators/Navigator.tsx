@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Icon} from '@rneui/base';
 
-import {useUserContext} from '../hooks/ContextHooks';
+import useUserContext from '../hooks/UserHook';
 import Home from '../views/Home';
 import Login from '../views/Login';
 import MyFiles from '../views/MyFiles';

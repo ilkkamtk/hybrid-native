@@ -9,7 +9,7 @@ import {
 
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
-import {useUserContext} from '../hooks/ContextHooks';
+import useUserContext from '../hooks/UserHook';
 
 const Login = () => {
   const [toggleRegister, setToggleRegister] = useState<boolean>(false);

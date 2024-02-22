@@ -1,7 +1,7 @@
 import {Button, Card, Input} from '@rneui/base';
 import {Controller, useForm} from 'react-hook-form';
 
-import {useUserContext} from '../hooks/ContextHooks';
+import useUserContext from '../hooks/UserHook';
 import {Credentials} from '../types/LocalTypes';
 
 const LoginForm = () => {
