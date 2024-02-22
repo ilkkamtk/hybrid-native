@@ -9,9 +9,6 @@ import {formatDistanceToNow} from 'date-fns';
 
 const MediaListItem = ({item}: {item: MediaItemWithOwner}) => {
   const navigation: NavigationProp<ParamListBase> = useNavigation();
-  // replace https with http to avoid network errors in item.thumbnail and item.filename
-  item.thumbnail = item.thumbnail.replace('https', 'http');
-  item.filename = item.filename.replace('https', 'http');
 
   return (
     <ListItem
@@ -19,7 +16,7 @@ const MediaListItem = ({item}: {item: MediaItemWithOwner}) => {
         navigation.navigate('Single', item);
       }}
     >
-      <Avatar size={'large'} source={{uri: item.thumbnail}} />
+      <Avatar size={'large'} source={{uri: 'http:' + item.thumbnail}} />
       <ListItem.Content>
         <ListItem.Title>{item.title}</ListItem.Title>
         <ListItem.Subtitle ellipsizeMode="tail" numberOfLines={1}>

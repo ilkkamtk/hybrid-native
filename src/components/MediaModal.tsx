@@ -37,13 +37,13 @@ const MediaModal = ({
               <>
                 {item.media_type.includes('image') ? (
                   <Image
-                    source={{uri: item.filename}}
+                    source={{uri: 'http:' + item.filename}}
                     style={{width: 300, height: 300}}
                   />
                 ) : (
                   <Video
                     style={{width: 300, height: 300}}
-                    source={{uri: item.filename}}
+                    source={{uri: 'http:' + item.filename}}
                     resizeMode={ResizeMode.CONTAIN}
                     useNativeControls
                   />

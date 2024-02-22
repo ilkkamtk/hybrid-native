@@ -114,7 +114,7 @@ const Upload = () => {
       />
       {image && image.assets![0].mimeType?.includes('video') ? (
         <Video
-          source={{uri: image.assets![0].uri}}
+          source={{uri: 'http:' + image.assets![0].uri}}
           style={{height: 300}}
           useNativeControls
           isLooping

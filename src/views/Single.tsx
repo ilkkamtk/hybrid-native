@@ -17,16 +17,14 @@ const Single = ({route}: any) => {
       <Card.Divider />
       {fileType === 'image' ? (
         <Card.Image
-          source={{uri: item.filename}}
+          source={{uri: 'http:' + item.filename}}
           style={{height: 300}}
           PlaceholderContent={<ActivityIndicator />}
         />
       ) : (
         <Video
           style={{height: 300}}
-          source={{
-            uri: item.filename,
-          }}
+          source={{uri: 'http:' + item.filename}}
           useNativeControls
           resizeMode={ResizeMode.CONTAIN}
           isLooping
