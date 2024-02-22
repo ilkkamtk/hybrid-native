@@ -111,7 +111,30 @@ const useMedia = (user: UserWithNoPassword | null = null) => {
     );
   };
 
-  return {mediaArray, postMedia, deleteMedia, loading};
+  const putMedia = async (
+    media_id: number,
+    inputs: Pick<MediaItem, 'title' | 'description'>,
+    token: string,
+  ) => {
+    setLoading(true);
+
+    const mediaResult = await fetchData<MediaResponse>(
+      process.env.EXPO_PUBLIC_MEDIA_API + '/media/' + media_id,
+      {
+        method: 'PUT',
+        headers: {
+          Authorization: 'Bearer ' + token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(inputs),
+      },
+    );
+
+    setLoading(false);
+    return mediaResult;
+  };
+
+  return {mediaArray, postMedia, deleteMedia, putMedia, loading};
 };
 
 const useUser = () => {

@@ -3,11 +3,18 @@ import {
   ParamListBase,
   useNavigation,
 } from '@react-navigation/native';
-import {ListItem, Avatar, Icon} from '@rneui/base';
-import {MediaItemWithOwner} from '@sharedTypes/DBTypes';
+import {ListItem, Avatar, Icon, Button} from '@rneui/base';
+import {MediaItemWithOwner, UserWithNoPassword} from '@sharedTypes/DBTypes';
 import {formatDistanceToNow} from 'date-fns';
+import {View} from 'react-native';
 
-const MediaListItem = ({item}: {item: MediaItemWithOwner}) => {
+const MediaListItem = ({
+  item,
+  user = null,
+}: {
+  item: MediaItemWithOwner;
+  user?: UserWithNoPassword | null;
+}) => {
   const navigation: NavigationProp<ParamListBase> = useNavigation();
 
   return (
@@ -27,11 +34,28 @@ const MediaListItem = ({item}: {item: MediaItemWithOwner}) => {
           {formatDistanceToNow(new Date(item.created_at), {addSuffix: true})}
         </ListItem.Subtitle>
       </ListItem.Content>
-      <Icon
-        type="ionicon"
-        name={item.media_type.includes('image') ? 'image' : 'film'}
-      />
-      <ListItem.Chevron color={'black'} />
+      {user ? (
+        <View style={{flexDirection: 'column'}}>
+          <Button
+            onPress={() => {
+              navigation.navigate('Update', item);
+            }}
+          >
+            <Icon type="ionicon" name="create" color="white" />
+          </Button>
+          <Button color="error">
+            <Icon type="ionicon" name="trash" color="white" />
+          </Button>
+        </View>
+      ) : (
+        <>
+          <Icon
+            type="ionicon"
+            name={item.media_type.includes('image') ? 'image' : 'film'}
+          />
+          <ListItem.Chevron color={'black'} />
+        </>
+      )}
     </ListItem>
   );
 };

@@ -3,9 +3,10 @@ import {MediaItemWithOwner} from '@sharedTypes/DBTypes';
 import {format} from 'date-fns';
 import {fi} from 'date-fns/locale';
 import {ResizeMode, Video} from 'expo-av';
-import {ActivityIndicator, StyleSheet, Text} from 'react-native';
+import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 
 import Ratings from '../components/Ratings';
+import Likes from '../components/Likes';
 
 const Single = ({route}: any) => {
   const item: MediaItemWithOwner = route.params;
@@ -30,8 +31,18 @@ const Single = ({route}: any) => {
           isLooping
         />
       )}
-      <ListItem>
-        <Text>{item.description}</Text>
+      <ListItem bottomDivider>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Text>{item.description}</Text>
+          <Likes item={item} />
+        </View>
       </ListItem>
       <ListItem>
         <Icon name="today" />
