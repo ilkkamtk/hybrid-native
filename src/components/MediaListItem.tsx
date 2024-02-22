@@ -6,7 +6,11 @@ import {
 import {ListItem, Avatar, Icon, Button} from '@rneui/base';
 import {MediaItemWithOwner, UserWithNoPassword} from '@sharedTypes/DBTypes';
 import {formatDistanceToNow} from 'date-fns';
-import {View} from 'react-native';
+import {Alert, View} from 'react-native';
+
+import useUpdateContext from '../hooks/UpdateHook';
+import {useMedia} from '../hooks/apiHooks';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MediaListItem = ({
   item,
@@ -16,6 +20,52 @@ const MediaListItem = ({
   user?: UserWithNoPassword | null;
 }) => {
   const navigation: NavigationProp<ParamListBase> = useNavigation();
+
+  const {deleteMedia} = useMedia();
+  const {update, setUpdate} = useUpdateContext();
+
+  // separate function for confirm dialog
+  const confirmDelete = () =>
+    new Promise((resolve) => {
+      Alert.alert(
+        'Delete',
+        'Are you sure you want to delete this media?',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => resolve(false),
+            style: 'cancel',
+          },
+          {
+            text: 'OK',
+            onPress: () => resolve(true),
+          },
+        ],
+        {cancelable: false},
+      );
+    });
+
+  const deleteHandler = async () => {
+    const cnf = await confirmDelete();
+
+    console.log(cnf);
+
+    if (!cnf) {
+      return;
+    }
+
+    try {
+      const token = await AsyncStorage.getItem('token');
+      if (!token) {
+        return;
+      }
+      const result = await deleteMedia(item.media_id, token);
+      Alert.alert(result.message);
+      setUpdate(!update);
+    } catch (e) {
+      console.error('delete failed', (e as Error).message);
+    }
+  };
 
   return (
     <ListItem
@@ -43,7 +93,7 @@ const MediaListItem = ({
           >
             <Icon type="ionicon" name="create" color="white" />
           </Button>
-          <Button color="error">
+          <Button color="error" onPress={deleteHandler}>
             <Icon type="ionicon" name="trash" color="white" />
           </Button>
         </View>
