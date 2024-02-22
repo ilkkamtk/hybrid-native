@@ -40,4 +40,4 @@
   Require cycles are allowed, but can result in uninitialized values. Consider refactoring to remove the need for a cycle.
   ```
 
-  `useUserContext`ja `useUpdateContext` hookit siirretty omiin tiedostoihin ja laitettu export default.
+  `useUserContext`ja `useUpdateContext` hookit siirretty omiin tiedostoihin ja laitettu export default. Ens kerralla täytyy huomioida myös React osiossa vaikkei se siitä valittanutkaan.
