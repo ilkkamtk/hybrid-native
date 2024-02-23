@@ -9,8 +9,8 @@ import Login from '../views/Login';
 import MyFiles from '../views/MyFiles';
 import Profile from '../views/Profile';
 import Single from '../views/Single';
-import Upload from '../views/Upload';
 import Update from '../views/Update';
+import Upload from '../views/Upload';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
