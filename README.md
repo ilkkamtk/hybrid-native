@@ -16,7 +16,7 @@
 
 - Ei liity tähän: Comment tyyppi on Javascriptissa, joten tulevaisuudessa sen nimeä vois ehkä vaihtaa. Kenties.
 - .env virtuaalikoneen osoitteista https->http
-- Kuville sama: `item.thumbnail = item.thumbnail.replace('https', 'http');` ja `item.filename = item.filename.replace('https', 'http');`
+- Vaihdoin apissa kuvien osoitteksi `//osoite` koska se toimii sekä http että https. Ei aiheuta muutoksia React puolella, mutta React Nativen puolella tarttee laittaa esim `source={{uri: 'http:' + item.thumbnail}}` tms. Silti .env virtuaalikoneen osoitteiksi https->http. Mutta aiemmin mainittua https->http muutosta ei tartte tehdä.`
 
 ## Routing
 
@@ -42,8 +42,6 @@
   ```
 
   `useUserContext`ja `useUpdateContext` hookit siirretty omiin tiedostoihin ja laitettu export default. Ens kerralla täytyy huomioida myös React osiossa vaikkei se siitä valittanutkaan.
-
-- Vaihdoin apissa kuvien osoitteksi `//osoite` koska se toimii sekä http että https. Ei aiheuta muutoksia React puolella, mutta React Nativen puolella tarttee laittaa esim `source={{uri: 'http:' + item.thumbnail}}` tms. Silti .env virtuaalikoneen osoitteiksi https->http. Mutta aiemmin mainittua https->http muutosta ei tartte tehdä.
 
 - upload formin resetointi poistuttaessa lienee parempi tehdä blur eventissä. Vähän helepompi ja ilmeisesti staten päivitykseen suositeltu tapa??? Eventit on suositeltu laitettavaksi useEffectiin, tässä hyvä esimerkki myös cleanupista:
 
