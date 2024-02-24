@@ -10,9 +10,8 @@ import * as ImagePicker from 'expo-image-picker';
 import {useEffect, useState} from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {Alert} from 'react-native';
-
-import useUpdateContext from '../hooks/UpdateHook';
-import {useFile, useMedia} from '../hooks/apiHooks';
+import {useFile, useMedia} from '../../../hooks/apiHooks';
+import useUpdateContext from '../../../hooks/UpdateHook';
 
 const Upload = () => {
   const [image, setImage] = useState<ImagePicker.ImagePickerResult | null>(

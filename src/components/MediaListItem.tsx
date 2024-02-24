@@ -1,12 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  NavigationProp,
-  ParamListBase,
-  useNavigation,
-} from '@react-navigation/native';
 import {ListItem, Avatar, Icon, Button} from '@rneui/base';
 import {MediaItemWithOwner, UserWithNoPassword} from '@sharedTypes/DBTypes';
 import {formatDistanceToNow} from 'date-fns';
+import {useRouter} from 'expo-router';
 import {Alert, View} from 'react-native';
 
 import useUpdateContext from '../hooks/UpdateHook';
@@ -19,10 +15,9 @@ const MediaListItem = ({
   item: MediaItemWithOwner;
   user?: UserWithNoPassword | null;
 }) => {
-  const navigation: NavigationProp<ParamListBase> = useNavigation();
-
   const {deleteMedia} = useMedia();
   const {update, setUpdate} = useUpdateContext();
+  const router = useRouter();
 
   // separate function for confirm dialog
   const confirmDelete = () =>
@@ -70,7 +65,7 @@ const MediaListItem = ({
   return (
     <ListItem
       onPress={() => {
-        navigation.navigate('Single', item);
+        router.push({pathname: '/single', params: item});
       }}
     >
       <Avatar size={'large'} source={{uri: 'http:' + item.thumbnail}} />
@@ -88,7 +83,7 @@ const MediaListItem = ({
         <View style={{flexDirection: 'column'}}>
           <Button
             onPress={() => {
-              navigation.navigate('Update', item);
+              // navigation.navigate('Update', item);
             }}
           >
             <Icon type="ionicon" name="create" color="white" />

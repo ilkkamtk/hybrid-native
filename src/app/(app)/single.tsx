@@ -3,13 +3,15 @@ import {MediaItemWithOwner} from '@sharedTypes/DBTypes';
 import {format} from 'date-fns';
 import {fi} from 'date-fns/locale';
 import {ResizeMode, Video} from 'expo-av';
+import {useLocalSearchParams} from 'expo-router';
 import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 
-import Ratings from '../components/Ratings';
-import Likes from '../components/Likes';
+import Likes from '../../components/Likes';
+import Ratings from '../../components/Ratings';
 
-const Single = ({route}: any) => {
-  const item: MediaItemWithOwner = route.params;
+const Single = () => {
+  const {item} = useLocalSearchParams<{item: MediaItemWithOwner}>(); // type assertion because expo sdk not fixed yet?
+
   const [fileType, fileFormat] = item.media_type.split('&#x2F;');
 
   return (

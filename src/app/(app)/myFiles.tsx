@@ -1,9 +1,9 @@
 import {Card} from '@rneui/base';
 import {View, FlatList} from 'react-native';
 
-import MediaListItem from '../components/MediaListItem';
-import useUserContext from '../hooks/UserHook';
-import {useMedia} from '../hooks/apiHooks';
+import MediaListItem from '../../components/MediaListItem';
+import useUserContext from '../../hooks/UserHook';
+import {useMedia} from '../../hooks/apiHooks';
 
 const MyFiles = () => {
   const {user} = useUserContext();

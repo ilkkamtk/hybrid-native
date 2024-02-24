@@ -3,6 +3,7 @@
     "name": "hybrid-native",
     "slug": "hybrid-native",
     "version": "1.0.0",
+    "scheme": "hybrid-native-scheme",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -23,6 +24,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "root": "./src/app"
+        }
+      ]
+    ]
   }
 }

@@ -2,9 +2,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Button, Icon, Badge} from '@rneui/base';
 import {Like, MediaItemWithOwner} from '@sharedTypes/DBTypes';
 import {useEffect, useReducer} from 'react';
+import {View} from 'react-native';
 
 import {useLike} from '../hooks/apiHooks';
-import {View} from 'react-native';
 
 type LikeState = {
   count: number;

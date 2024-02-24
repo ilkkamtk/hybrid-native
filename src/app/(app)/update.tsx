@@ -10,8 +10,8 @@ import {Video} from 'expo-av';
 import {Controller, useForm} from 'react-hook-form';
 import {Keyboard, TouchableWithoutFeedback} from 'react-native';
 
-import useUpdateContext from '../hooks/UpdateHook';
-import {useMedia} from '../hooks/apiHooks';
+import useUpdateContext from '../../hooks/UpdateHook';
+import {useMedia} from '../../hooks/apiHooks';
 
 const Update = ({route}: any) => {
   const item: MediaItemWithOwner = route.params;

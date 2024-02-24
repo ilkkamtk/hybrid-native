@@ -135,7 +135,7 @@ const useMedia = (user: UserWithNoPassword | null = null) => {
     return mediaResult;
   };
 
-  return {mediaArray, postMedia, deleteMedia, putMedia, loading};
+  return {mediaArray, postMedia, deleteMedia, putMedia, loading, setLoading};
 };
 
 const useUser = () => {
