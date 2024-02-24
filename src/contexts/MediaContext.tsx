@@ -1,8 +1,9 @@
 import {MediaItemWithOwner} from '@sharedTypes/DBTypes';
 import {createContext, useEffect, useState} from 'react';
-import {useMedia} from '../hooks/apiHooks';
+
 import useUpdateContext from '../hooks/UpdateHook';
 import useUserContext from '../hooks/UserHook';
+import {useMedia} from '../hooks/apiHooks';
 
 type MediaContextType = {
   mediaArray: MediaItemWithOwner[];

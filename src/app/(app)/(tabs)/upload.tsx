@@ -1,18 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  NavigationProp,
-  ParamListBase,
-  useNavigation,
-} from '@react-navigation/native';
 import {Button, Card, Input} from '@rneui/base';
 import {Video} from 'expo-av';
 import * as ImagePicker from 'expo-image-picker';
-import {useCallback, useEffect, useState} from 'react';
+import {useFocusEffect, useRouter} from 'expo-router';
+import {useCallback, useState} from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {Alert} from 'react-native';
-import {useFile, useMedia} from '../../../hooks/apiHooks';
+
 import useUpdateContext from '../../../hooks/UpdateHook';
-import {useFocusEffect, useRouter} from 'expo-router';
+import {useFile, useMedia} from '../../../hooks/apiHooks';
 
 const Upload = () => {
   const [image, setImage] = useState<ImagePicker.ImagePickerResult | null>(
