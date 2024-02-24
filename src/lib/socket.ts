@@ -7,7 +7,6 @@ const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
   process.env.EXPO_PUBLIC_SOCKET_SERVER!,
   {
     path: '/socket/socket/socket.io',
-    transports: ['websocket'],
   },
 );
 
