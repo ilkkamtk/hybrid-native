@@ -21,6 +21,7 @@
 ## Routing
 
 - kokeilin useNavigationia MediaListItemissä. Ei tartte lähettää navigation objektia propsina. Tyyppien löytämisessä haasteita, mutta löytyi: `const navigation: NavigationProp<ParamListBase> = useNavigation();`
+- Edelliseen liittyen: <https://reactnavigation.org/docs/params/#what-should-be-in-params>. Eli tuolla sanotaan, että route paramseissa mahd vähän dataa. Eli jos tarvii enemmän dataa, niin tarttee käyttää contextia tms storea. Palataan ens kerralla tähän.
 
 ## Profile
 
