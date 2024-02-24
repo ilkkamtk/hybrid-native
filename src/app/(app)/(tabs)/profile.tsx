@@ -6,10 +6,11 @@ import {
 import {Button, Card, Icon, ListItem} from '@rneui/themed';
 
 import useUserContext from '../../../hooks/UserHook';
+import {useRouter} from 'expo-router';
 
 const Profile = () => {
   const {handleLogout, user} = useUserContext();
-  const navigation: NavigationProp<ParamListBase> = useNavigation();
+  const router = useRouter();
   return (
     <>
       {user && (
@@ -27,7 +28,7 @@ const Profile = () => {
             <ListItem.Title>user id: {user.user_id}</ListItem.Title>
           </ListItem>
           <Card.Divider />
-          <Button onPress={() => navigation.navigate('My Files')}>
+          <Button onPress={() => router.push('/(app)/myfiles')}>
             My Files &nbsp;
             <Icon name="folder" color="white" />
           </Button>

@@ -7,11 +7,12 @@ import {
 import {Button, Card, Input} from '@rneui/base';
 import {Video} from 'expo-av';
 import * as ImagePicker from 'expo-image-picker';
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {Alert} from 'react-native';
 import {useFile, useMedia} from '../../../hooks/apiHooks';
 import useUpdateContext from '../../../hooks/UpdateHook';
+import {useFocusEffect, useRouter} from 'expo-router';
 
 const Upload = () => {
   const [image, setImage] = useState<ImagePicker.ImagePickerResult | null>(
@@ -20,7 +21,7 @@ const Upload = () => {
   const {postExpoFile, loading} = useFile();
   const {postMedia, loading: loadingMedia} = useMedia();
   const {update, setUpdate} = useUpdateContext();
-  const navigation: NavigationProp<ParamListBase> = useNavigation();
+  const router = useRouter();
 
   const initValues = {title: '', description: ''};
   const {
@@ -60,8 +61,7 @@ const Upload = () => {
         const mediaResponse = await postMedia(fileResponse, inputs, token);
         console.log(mediaResponse);
         setUpdate(!update);
-        navigation.navigate('Home');
-
+        router.push('/(app)/(tabs)');
         resetForm();
       }
     } catch (error) {
@@ -74,13 +74,13 @@ const Upload = () => {
     reset(initValues);
   };
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('blur', () => {
-      resetForm();
-    });
-
-    return unsubscribe;
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        resetForm();
+      };
+    }, []),
+  );
 
   return (
     <Card>

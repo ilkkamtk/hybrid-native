@@ -13,9 +13,21 @@ const Layout = () => {
   return (
     <Stack>
       <Stack.Screen name="(tabs)" options={{headerShown: false}} />
-      <Stack.Screen name="single" options={{presentation: 'modal'}} />
-      <Stack.Screen name="myFiles" />
-      <Stack.Screen name="update" />
+      <Stack.Screen
+        name="single"
+        options={{
+          presentation: 'modal',
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="myfiles"
+        options={{presentation: 'modal', title: 'My Files'}}
+      />
+      <Stack.Screen
+        name="update"
+        options={{presentation: 'modal', title: 'Modify'}}
+      />
     </Stack>
   );
 };

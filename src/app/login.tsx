@@ -23,7 +23,7 @@ const Login = () => {
 
   // if user is logged in, redirect to home which is the tabs view
   if (user) {
-    return <Redirect href="/(tabs)" />;
+    return <Redirect href="/(app)/(tabs)" />;
   }
 
   return (

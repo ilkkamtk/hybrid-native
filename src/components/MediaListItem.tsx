@@ -65,7 +65,7 @@ const MediaListItem = ({
   return (
     <ListItem
       onPress={() => {
-        router.push({pathname: '/single', params: item});
+        router.push({pathname: '/single', params: {id: item.media_id}});
       }}
     >
       <Avatar size={'large'} source={{uri: 'http:' + item.thumbnail}} />
@@ -83,7 +83,7 @@ const MediaListItem = ({
         <View style={{flexDirection: 'column'}}>
           <Button
             onPress={() => {
-              // navigation.navigate('Update', item);
+              router.push({pathname: '/update', params: {id: item.media_id}});
             }}
           >
             <Icon type="ionicon" name="create" color="white" />

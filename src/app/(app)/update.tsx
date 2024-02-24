@@ -1,23 +1,25 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  NavigationProp,
-  ParamListBase,
-  useNavigation,
-} from '@react-navigation/native';
-import {Button, Card, Input} from '@rneui/base';
-import {MediaItem, MediaItemWithOwner} from '@sharedTypes/DBTypes';
+import {Button, Card, Input, Text} from '@rneui/base';
+import {MediaItem} from '@sharedTypes/DBTypes';
 import {Video} from 'expo-av';
+import {useLocalSearchParams, useRouter} from 'expo-router';
 import {Controller, useForm} from 'react-hook-form';
 import {Keyboard, TouchableWithoutFeedback} from 'react-native';
 
+import useMediaContext from '../../hooks/MediaHook';
 import useUpdateContext from '../../hooks/UpdateHook';
 import {useMedia} from '../../hooks/apiHooks';
 
-const Update = ({route}: any) => {
-  const item: MediaItemWithOwner = route.params;
+const Update = () => {
+  const {myMediaArray} = useMediaContext();
+  const {id} = useLocalSearchParams<{id: string}>();
+  const item = myMediaArray.find((m) => m.media_id === Number(id));
+  if (!item) {
+    return <Text>Media not found</Text>;
+  }
   const {putMedia, loading: loadingMedia} = useMedia();
   const {update, setUpdate} = useUpdateContext();
-  const navigation: NavigationProp<ParamListBase> = useNavigation();
+  const router = useRouter();
 
   const initValues = {title: item.title, description: item.description};
   const {
@@ -37,7 +39,7 @@ const Update = ({route}: any) => {
         const mediaResponse = await putMedia(item.media_id, inputs, token);
         console.log(mediaResponse);
         setUpdate(!update);
-        navigation.navigate('My Files');
+        router.back();
         reset(initValues);
       }
     } catch (error) {

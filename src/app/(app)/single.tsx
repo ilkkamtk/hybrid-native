@@ -1,5 +1,4 @@
 import {Card, Icon, ListItem} from '@rneui/base';
-import {MediaItemWithOwner} from '@sharedTypes/DBTypes';
 import {format} from 'date-fns';
 import {fi} from 'date-fns/locale';
 import {ResizeMode, Video} from 'expo-av';
@@ -8,10 +7,15 @@ import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 
 import Likes from '../../components/Likes';
 import Ratings from '../../components/Ratings';
+import useMediaContext from '../../hooks/MediaHook';
 
 const Single = () => {
-  const {item} = useLocalSearchParams<{item: MediaItemWithOwner}>(); // type assertion because expo sdk not fixed yet?
-
+  const {mediaArray} = useMediaContext();
+  const {id} = useLocalSearchParams<{id: string}>();
+  const item = mediaArray.find((m) => m.media_id === Number(id));
+  if (!item) {
+    return <Text>Media not found</Text>;
+  }
   const [fileType, fileFormat] = item.media_type.split('&#x2F;');
 
   return (

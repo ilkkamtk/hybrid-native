@@ -21,12 +21,11 @@ import useUpdateContext from './UpdateHook';
 import {fetchData} from '../lib/functions';
 import {Credentials} from '../types/LocalTypes';
 
-const useMedia = (user: UserWithNoPassword | null = null) => {
-  const [mediaArray, setMediaArray] = useState<MediaItemWithOwner[]>([]);
+const useMedia = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const {update, setNewItems} = useUpdateContext();
 
-  const getMedia = async () => {
+  const getMedia = async (user: UserWithNoPassword | null = null) => {
     try {
       setNewItems(false);
       setLoading(true);
@@ -53,7 +52,7 @@ const useMedia = (user: UserWithNoPassword | null = null) => {
       );
       itemsWithOwner.reverse();
       setLoading(false);
-      setMediaArray(itemsWithOwner);
+      return itemsWithOwner;
     } catch (error) {
       console.error('getMedia failed', error);
     }
@@ -135,7 +134,7 @@ const useMedia = (user: UserWithNoPassword | null = null) => {
     return mediaResult;
   };
 
-  return {mediaArray, postMedia, deleteMedia, putMedia, loading, setLoading};
+  return {getMedia, postMedia, deleteMedia, putMedia, loading, setLoading};
 };
 
 const useUser = () => {
