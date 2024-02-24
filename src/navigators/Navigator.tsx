@@ -1,9 +1,11 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Icon} from '@rneui/base';
+import {Icon, Text} from '@rneui/base';
 
+import useUpdateContext from '../hooks/UpdateHook';
 import useUserContext from '../hooks/UserHook';
+import useSocket from '../hooks/socketHooks';
 import Home from '../views/Home';
 import Login from '../views/Login';
 import MyFiles from '../views/MyFiles';
@@ -16,6 +18,8 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const Tabscreen = () => {
+  const {isConnected} = useSocket();
+  const {newItems} = useUpdateContext();
   return (
     <Tab.Navigator>
       <Tab.Screen
@@ -24,6 +28,12 @@ const Tabscreen = () => {
         options={{
           tabBarIcon: ({color, size}) => (
             <Icon name="home" color={color} size={size} />
+          ),
+          headerRight: () => (
+            <>
+              {newItems && <Text>pull to refresh</Text>}
+              <Text>{isConnected ? 'socket' : 'no socket'}</Text>
+            </>
           ),
         }}
       />

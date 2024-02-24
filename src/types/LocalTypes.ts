@@ -13,3 +13,13 @@ type GraphQLResponse<T> = {
   errors?: {message: string}[];
 };
 export type {GraphQLResponse};
+
+type ServerToClientEvents = {
+  addMedia: (message: string) => void;
+};
+
+type ClientToServerEvents = {
+  update: (message: string) => void;
+};
+
+export {ServerToClientEvents, ClientToServerEvents};

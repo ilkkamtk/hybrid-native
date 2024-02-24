@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   NavigationProp,
   ParamListBase,
@@ -10,7 +11,6 @@ import {Alert, View} from 'react-native';
 
 import useUpdateContext from '../hooks/UpdateHook';
 import {useMedia} from '../hooks/apiHooks';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MediaListItem = ({
   item,

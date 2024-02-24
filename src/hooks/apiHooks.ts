@@ -24,10 +24,11 @@ import {Credentials} from '../types/LocalTypes';
 const useMedia = (user: UserWithNoPassword | null = null) => {
   const [mediaArray, setMediaArray] = useState<MediaItemWithOwner[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const {update} = useUpdateContext();
+  const {update, setNewItems} = useUpdateContext();
 
   const getMedia = async () => {
     try {
+      setNewItems(false);
       setLoading(true);
       let mediaItems = await fetchData<MediaItem[]>(
         process.env.EXPO_PUBLIC_MEDIA_API + '/media',

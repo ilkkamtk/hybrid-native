@@ -1,10 +1,10 @@
+import {useNavigation} from '@react-navigation/native';
+import {useEffect} from 'react';
 import {View, FlatList} from 'react-native';
 
 import MediaListItem from '../components/MediaListItem';
 import useUpdateContext from '../hooks/UpdateHook';
 import {useMedia} from '../hooks/apiHooks';
-import {useEffect} from 'react';
-import {useNavigation} from '@react-navigation/native';
 
 const Home = () => {
   const {mediaArray, loading} = useMedia();
@@ -15,6 +15,7 @@ const Home = () => {
     setUpdate(!update);
   };
 
+  // this is to refresh the list when we navigate back to this screen (fix for iOS spinner showing after updating media item)
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       setUpdate(!update);
@@ -22,6 +23,8 @@ const Home = () => {
 
     return unsubscribe;
   }, [navigation, update, setUpdate]);
+
+  console.log('rendering Home');
 
   return (
     <View>

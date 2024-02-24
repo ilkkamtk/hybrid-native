@@ -62,6 +62,7 @@ const Upload = () => {
         console.log(mediaResponse);
         setUpdate(!update);
         navigation.navigate('Home');
+
         resetForm();
       }
     } catch (error) {
@@ -81,8 +82,6 @@ const Upload = () => {
 
     return unsubscribe;
   }, []);
-
-  console.log('rendering Upload');
 
   return (
     <Card>
