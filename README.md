@@ -60,3 +60,7 @@ useEffect(() => {
 ## Player
 
 - Muokkaus ja delete lisätty. Deleteen tein asynkronisen confirm dialogin, koska perus confirm ei tieteskään toimi.
+
+## Extra
+
+- Tein vielä extra branchin, jossa testasin socketeja ja expo routeria.
